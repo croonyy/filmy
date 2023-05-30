@@ -1,0 +1,32 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none",
+    "terminal.integrated.profiles.windows": {
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd",
+            "color": "terminal.ansiYellow"
+        },
+        "Cmder": {
+            "path": "C:\\Windows\\system32\\cmd.exe",
+            "args": [
+                "/k",
+                "conda activate D:\\ProgramData\\miniconda3\\envs\\filmy"  
+                //这里需要做出对应修改，conda activate + 自己虚拟环境所在的位置
+            ],
+            "env": {
+                "CMDER_ROOT": "D:\\ProgramData\\miniconda3\\envs\\filmy\\Scripts\\python.exe"
+                //这里需要做出对应修改，自己虚拟环境编译器所在的位置
+            },
+            "color": "terminal.ansiGreen",
+            "icon": "terminal-cmd"
+        },
+    },
+    "terminal.integrated.defaultProfile.windows": "Cmder"
+}
