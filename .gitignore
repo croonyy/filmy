@@ -2,7 +2,7 @@
 **/*.pyc
 **/node_modules/
 .idea/
-.vscode/
+# .vscode/
 frontv/
 pip_package/
 django.log
