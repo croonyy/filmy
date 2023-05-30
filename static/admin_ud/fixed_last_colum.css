@@ -1,0 +1,19 @@
+th:last-child,
+td:last-child {
+    position: sticky;
+    left: 0;
+    /*background: #F4F4F5;*/
+    background: #eee;
+    text-align: center;
+    right: 0px;
+    /*width: 10%;*/
+    /*width:50px;*/
+    min-width: 100px;
+    max-width: 500px;
+    white-space:normal;
+}
+
+
+tbody tr:hover td:last-child {
+    background: #eee !important;
+}

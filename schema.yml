@@ -1,0 +1,113 @@
+Create global engine[ch_189]:Engine(clickhouse+native://test_ch:***@192.168.187.189:9000/test)
+Create global engine[ch_152]:Engine(clickhouse+native://filler:***@10.33.6.152:9000/ods)
+Create global engine[ch_239]:Engine(clickhouse+native://admin:***@192.168.100.239:9000/test) failed.
+error:Orig exception: Code: 102. Unexpected packet from server 192.168.100.239:9000 (expected Hello or Exception, got Unknown packet)
+Create global engine[ch_152_test]:Engine(clickhouse+native://qiaomanzou:***@10.33.6.152:9000/ods)
+installed ud app:[rbac] namespace:[rbac]
+installed ud app:[crud] namespace:[crud]
+********************************************************************************
+info:
+  description: ''
+  title: ''
+  version: ''
+openapi: 3.0.0
+paths:
+  /rbac/class_view_test/:
+    get:
+      description: !!python/object/new:django.utils.safestring.SafeString
+      - "<h4 style=\"color:red\">\u63A5\u53E3\u6587\u6863\u6D4B\u8BD5</h1>"
+      operationId: class_view_test_list
+      parameters:
+      - in: query
+        name: id
+        schema:
+          description: "\u4E3B\u952Eid"
+          title: ''
+          type: integer
+      - in: query
+        name: param1
+        schema:
+          description: "\u7C7B\u578B(1:\u5220\u9664, 2:\u586B\u5145\u5747\u503C)"
+          enum: &id001
+          - 1
+          - 2
+          title: ''
+      - in: query
+        name: param2
+        schema:
+          description: ''
+          title: ''
+          type: string
+      - in: query
+        name: param3
+        schema:
+          description: ''
+          title: ''
+          type: object
+      tags:
+      - class_view_test
+    post:
+      description: !!python/object/new:django.utils.safestring.SafeString
+      - "<h4 style=\"color:red\">\u63A5\u53E3\u6587\u6863\u6D4B\u8BD5</h1>"
+      operationId: class_view_test_create
+      parameters:
+      - in: query
+        name: id
+        schema:
+          description: "\u4E3B\u952Eid"
+          title: ''
+          type: integer
+      - in: query
+        name: param1
+        schema:
+          description: "\u7C7B\u578B(1:\u5220\u9664, 2:\u586B\u5145\u5747\u503C)"
+          enum: *id001
+          title: ''
+      - in: query
+        name: param2
+        schema:
+          description: ''
+          title: ''
+          type: string
+      - in: query
+        name: param3
+        schema:
+          description: ''
+          title: ''
+          type: object
+      tags:
+      - class_view_test
+  /rbac/func_view_test/:
+    get:
+      description: !!python/object/new:django.utils.safestring.SafeString
+      - "<h4 style=\"color:red\">\u63A5\u53E3\u6587\u6863\u6D4B\u8BD5</h1>"
+      operationId: func_view_test_list
+      parameters:
+      - in: query
+        name: id
+        schema:
+          description: "\u4E3B\u952Eid"
+          title: ''
+          type: integer
+      - in: query
+        name: param1
+        schema:
+          description: "\u7C7B\u578B(1:\u5220\u9664, 2:\u586B\u5145\u5747\u503C)"
+          enum: *id001
+          title: ''
+      - in: query
+        name: param2
+        schema:
+          description: ''
+          title: ''
+          type: string
+      - in: query
+        name: param3
+        schema:
+          description: ''
+          title: ''
+          type: object
+      tags:
+      - func_view_test
+servers:
+- url: ''
