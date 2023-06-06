@@ -1,0 +1,3 @@
+[submodule "frontv"]
+	path = frontv
+	url = https://github.com/croonyy/frontv.git
