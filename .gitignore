@@ -1,8 +1,8 @@
 **/__pycache__
 **/*.pyc
 **/node_modules/
-.idea/
-# .vscode/
-frontv/
-pip_package/
-django.log
+**/.idea/
+**/.vscode/
+**/.git/
+**/pip_package/
+**/django.log

@@ -28,16 +28,33 @@ from drf_yasg.utils import swagger_auto_schema
 
 
 @swagger_auto_schema(
-    tags=['函数视图测试'],
-    method='POST',
-    operation_summary='func_view_test',
-    operation_description='成功返回 200\n'
-                          '失败（参数错误或不符合要求）返回 400',
-    request_body=yasgSchemas.testSchema2,
+    tags=["函数视图测试"],
+    method="POST",
+    operation_summary="func_view_test",
+    operation_description="成功返回 200\n" "失败（参数错误或不符合要求）返回 400",
+    # request_body=yasgSchemas.testSchema2,
+    request_body=Schema(
+            type=openapi.TYPE_OBJECT,
+            required=["a"],
+            properties={
+                "a": Schema(
+                    description="a",
+                    type=openapi.TYPE_STRING,
+                    default="",
+                ),
+            },
+        )
+    # manual_parameters=[openapi.Parameter(
+    #             "prompt",
+    #             openapi.IN_QUERY,
+    #             description="输入内容",
+    #             required=True,
+    #             type=openapi.TYPE_STRING
+    #         ),]
     # request_body=TestSerializer, //可以用模型序列化器来充当schema
-    responses=response_test.response_test()
+    # responses=response_test.response_test()
 )
-@api_view(['POST'])
+@api_view(["POST"])
 # @permission_classes((perm_test.loginRequired,))
 # @permission_classes([permissions.IsAuthenticated, ])
 @permission_classes([])
@@ -98,7 +115,7 @@ def func_view_test(request):
 #     return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(["GET", "PUT", "DELETE"])
 def UserViewSetPutDelete(request, pk):
     try:
         # filter查询若不存在返回空，get查询不存在抛出异常
@@ -119,9 +136,10 @@ def UserViewSetPutDelete(request, pk):
         else:
             return Response(data=u.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == 'DELETE':
+    elif request.method == "DELETE":
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 # @api_view(['GET'])
 # @schema(udSchema)

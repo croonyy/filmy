@@ -8,7 +8,7 @@ import time
 JWT_SALT = "ds()udsjo@jlsdosjf)wjd_#(#)$"
 
 
-def create_token(info: dict, timeout=2 * 60 * 60):
+def create_token(info: dict):
     """
     用于加密生成token
     :payload dict e.g. {"user_id": "杨远", "age": 31}:
@@ -30,35 +30,44 @@ def create_token(info: dict, timeout=2 * 60 * 60):
         "type": "jwt",
         "alg": "HS256"
     }
+    # access_exp = 60 * 60 * 2
+    # refresh_exp = 60 * 60 * 12 * 30
+    access_exp = 10
+    refresh_exp = 15
     now = datetime.datetime.utcnow()
+    #access_token
     # 设置过期时间
-    payload = {
+    access_payload = {
         # "iss": "sinocare.django.com",
         # "iat": int(time.time()),
         # "exp": int(time.time()) + datetime.timedelta(seconds=timeout),
         "iat": now,
-        "exp": now + datetime.timedelta(seconds=timeout),
+        "exp": now + datetime.timedelta(seconds=access_exp),
         # "aud": "www.gusibi.mobi",
         # "scopes": ['open']
     }
-    payload = dict(payload, **info)
-    # payload['iat'] = datetime.datetime.utcnow()  # 只能用utc时间
-    # payload['exp'] = datetime.datetime.utcnow() + datetime.timedelta(seconds=timeout)
-    # payload['crt'] = datetime.datetime.now() + datetime.timedelta(seconds=timeout)
-    # result = jwt.encode(payload=payload, key=JWT_SALT, algorithm="HS256", headers=headers).decode("utf-8")
-    ret_token = jwt.encode(payload, JWT_SALT, algorithm="HS256", headers=headers)
-    if not isinstance(ret_token, str):
-        ret_token = str(ret_token, encoding='utf8')
-    payload['grant_type'] = "refresh"
-    payload['exp'] = now + datetime.timedelta(seconds=60 * 60 * 24)
-    refresh_token = jwt.encode(payload, JWT_SALT, algorithm='HS256', headers=headers)
+    access_payload = dict(access_payload, **info)
+    access_token = jwt.encode(access_payload, JWT_SALT, algorithm="HS256", headers=headers)
+    if not isinstance(access_token, str):
+        access_token = str(access_token, encoding='utf8')
+    
+    #refresh_token
+    refresh_payload = {
+        "iat": now,
+        "exp": now + datetime.timedelta(seconds=refresh_exp),
+    }
+    refresh_payload = dict(refresh_payload, **info)
+    refresh_payload['grant_type'] = "refresh"
+    refresh_token = jwt.encode(refresh_payload, JWT_SALT, algorithm='HS256', headers=headers)
     if not isinstance(refresh_token, str):
         refresh_token = str(refresh_token, encoding='utf8')
     # 返回加密结果
-    return {"access_token": ret_token,
+    return {"access_token": access_token,
             "refresh_token": refresh_token,
-            "iat": payload['iat'],
-            "exp": payload['exp']}
+            # 使用时间戳（整数形式），便于前端判断过期与否
+            "iat": int(time.mktime(access_payload['iat'].timetuple())),
+            "exp": int(time.mktime(access_payload['exp'].timetuple()))
+            }
 
 
 def parse_payload(token):

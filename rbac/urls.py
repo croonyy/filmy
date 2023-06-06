@@ -47,5 +47,6 @@ urlpatterns = [
     # re_path(r'^logout/$', views.authentication.logout),
     re_path(r'^login/$', authentication.login),
     re_path(r'^logout/$', authentication.logout),
+    re_path(r'^refresh_token/$', authentication.refresh_token),
 
 ]
