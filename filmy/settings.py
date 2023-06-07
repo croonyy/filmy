@@ -22,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z)r7xk_rm1(zw$s8z#ai2m3^s44yr0%t_&cx=*n2l6(nuzby_j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-from filmy import debug_settings as ds
+from filmy import local_config as lc
 
-DEBUG = ds.DEBUG
+DEBUG = lc.DEBUG
 # DEBUG = False
 
 # DJANGO_DEFAULT = True  #
@@ -155,7 +155,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
         # 'HOST': '192.168.187.189',  # 主机
-        'HOST': ds.HOST,  # 主机
+        'HOST': lc.HOST,  # 主机
         'PORT': '3306',  # 数据库使用的端口
         # 'NAME': 'sino_test',  # 你要存储数据的库名，事先要创建之
         'NAME': 'filmy',  # 你要存储数据的库名，事先要创建之

@@ -7,4 +7,4 @@
 **/.git/
 **/pip_package/
 **/django.log
-**/debug_settings.py
+filmy/local_config.py

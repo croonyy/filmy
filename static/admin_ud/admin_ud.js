@@ -110,32 +110,31 @@ function dispatch(url, id, cls_name, tag) {
 }
 
 function set_last_column_width() {
-    // var td_list = document.querySelectorAll('td:last-child');
-    // var th_list = document.querySelectorAll('th:last-child');
-    let result_list = $('#result_list');
-    // if (result_list.length !== 0) {
-    if (result_list[0].querySelector('tbody').children.length !== 0) {
-        let td_list = $('td:last-child');
-        let th_list = $('th:last-child');
-        let width = 0;
-        let btns = td_list[0].getElementsByTagName('button');
-        let btns_cnt = td_list[0].getElementsByTagName('button').length;
-        for (let i = 0; i < btns.length; i++) {
-            let font_cnt = btns[i].getElementsByTagName('span')[0].textContent.length;
-            width = width + font_cnt * 14; // 一个字给14px的宽度
-            // console.log(btns[i].getElementsByTagName('span')[0].textContent)
-        }
-        // console.log(width);
-        // width = width + btns_cnt * 14 + 16; // 按钮padding14、加上按钮margin 4px 加上左右10px margin，
-        width = width + btns_cnt * 14 + (btns_cnt - 1) * 4 + 14; // 按钮padding14、加上按钮margin 4px 加上左右10px margin，
-        // console.log(width);
-        let width_str = String(width > 180 ? 180 : width) + 'px';
-        console.log(width_str);
-        td_list.css("width", width_str);
-        th_list.css("width", width_str);
-    } else {
-        console.log('dom #result_list have no data.')
+    result_list = document.getElementById('result_list')
+    if(!!result_list && result_list.querySelector('tbody').children.length !== 0){
+            var td_list = document.querySelectorAll('td:last-child');
+            var th_list = document.querySelectorAll('th:last-child');
+            let width = 0;
+            let btns = td_list[0].getElementsByTagName('button');
+            let btns_cnt = td_list[0].getElementsByTagName('button').length;
+            for (let i = 0; i < btns.length; i++) {
+                let font_cnt = btns[i].getElementsByTagName('span')[0].textContent.length;
+                width = width + font_cnt * 14; // 一个字给14px的宽度
+                // console.log(btns[i].getElementsByTagName('span')[0].textContent)
+            }
+            // width = width + btns_cnt * 14 + 16; // 按钮padding14、加上按钮margin 4px 加上左右10px margin，
+            width = width + btns_cnt * 14 + (btns_cnt - 1) * 4 + 14; // 按钮padding14、加上按钮margin 4px 加上左右10px margin，
+            // console.log(width);
+            let width_str = String(width > 180 ? 180 : width) + 'px';
+
+            td_list.forEach((item)=>{item.style.width=width_str})
+            th_list.forEach((item)=>{item.style.width=width_str})
+            // td_list.css("width", width_str);
+            // th_list.css("width", width_str); 
     }
+    // else {
+    //     console.log('dom #result_list not exist or have no data.')
+    // }
 }
 
 window.onload = function () {
