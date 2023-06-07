@@ -145,19 +145,19 @@ WSGI_APPLICATION = 'filmy.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # },
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
-        'HOST': 'localhost',  # 主机
-        'PORT': '3306',  # 数据库使用的端口
-        # 'NAME': 'sino_test',  # 你要存储数据的库名，事先要创建之
-        'NAME': 'filmy',  # 你要存储数据的库名，事先要创建之
-        'USER': 'root',  # 数据库用户名
-        'PASSWORD': '123456',  # 密码
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     },
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
+#         'HOST': 'localhost',  # 主机
+#         'PORT': '3306',  # 数据库使用的端口
+#         # 'NAME': 'sino_test',  # 你要存储数据的库名，事先要创建之
+#         'NAME': 'filmy',  # 你要存储数据的库名，事先要创建之
+#         'USER': 'root',  # 数据库用户名
+#         'PASSWORD': '123456',  # 密码
+#     },
 }
 DATABASE_ROUTERS = ['rbac.util.database_router.DatabaseAppsRouter']
 
