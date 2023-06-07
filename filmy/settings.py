@@ -22,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z)r7xk_rm1(zw$s8z#ai2m3^s44yr0%t_&cx=*n2l6(nuzby_j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-from filmy.debug_settings import *
+from filmy import debug_settings as ds
 
-# DEBUG = True
+DEBUG = ds.DEBUG
 # DEBUG = False
 
 # DJANGO_DEFAULT = True  #
@@ -65,8 +65,11 @@ INSTALLED_APPS = [
 
 UD_APPS = [
     'rbac',
-    # 'crud',
+    'app1',
 ]
+
+# api_prefix 接口url前缀
+API_PRIFIX='api/v1/'
 
 # 因为我们自定义的认证类，有些接口访问需要使用token，后面就可以在文档中，在请求头中带上token了
 SWAGGER_SETTINGS = {
@@ -151,7 +154,8 @@ DATABASES = {
     # },
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
-        'HOST': 'localhost',  # 主机
+        # 'HOST': '192.168.187.189',  # 主机
+        'HOST': ds.HOST,  # 主机
         'PORT': '3306',  # 数据库使用的端口
         # 'NAME': 'sino_test',  # 你要存储数据的库名，事先要创建之
         'NAME': 'filmy',  # 你要存储数据的库名，事先要创建之

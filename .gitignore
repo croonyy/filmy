@@ -1,3 +1,4 @@
+**/__pycache__/
 **/__pycache__
 **/*.pyc
 **/node_modules/
@@ -6,3 +7,4 @@
 **/.git/
 **/pip_package/
 **/django.log
+**/debug_settings.py
