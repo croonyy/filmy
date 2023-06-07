@@ -65,8 +65,11 @@ INSTALLED_APPS = [
 
 UD_APPS = [
     'rbac',
-    # 'crud',
+    'app1',
 ]
+
+# api_prefix 接口url前缀
+API_PRIFIX='api/v1/'
 
 # 因为我们自定义的认证类，有些接口访问需要使用token，后面就可以在文档中，在请求头中带上token了
 SWAGGER_SETTINGS = {
@@ -145,19 +148,19 @@ WSGI_APPLICATION = 'filmy.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
+        'HOST': '192.168.187.189',  # 主机
+        'PORT': '3306',  # 数据库使用的端口
+        # 'NAME': 'sino_test',  # 你要存储数据的库名，事先要创建之
+        'NAME': 'filmy',  # 你要存储数据的库名，事先要创建之
+        'USER': 'root',  # 数据库用户名
+        'PASSWORD': '123456',  # 密码
     },
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
-#         'HOST': 'localhost',  # 主机
-#         'PORT': '3306',  # 数据库使用的端口
-#         # 'NAME': 'sino_test',  # 你要存储数据的库名，事先要创建之
-#         'NAME': 'filmy',  # 你要存储数据的库名，事先要创建之
-#         'USER': 'root',  # 数据库用户名
-#         'PASSWORD': '123456',  # 密码
-#     },
 }
 DATABASE_ROUTERS = ['rbac.util.database_router.DatabaseAppsRouter']
 

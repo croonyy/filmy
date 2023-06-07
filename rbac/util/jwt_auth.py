@@ -30,10 +30,10 @@ def create_token(info: dict):
         "type": "jwt",
         "alg": "HS256"
     }
-    access_exp = 60 * 60 * 2
-    refresh_exp = 60 * 60 * 12 * 30
-    # access_exp = 10
-    # refresh_exp = 15
+    # access_exp = 60 * 60 * 2
+    # refresh_exp = 60 * 60 * 12 * 30
+    access_exp = 10
+    refresh_exp = 15
     now = datetime.datetime.utcnow()
     #access_token
     # 设置过期时间
